@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
+        listView.setOnItemLongClickListener(this);
 
     }
 
