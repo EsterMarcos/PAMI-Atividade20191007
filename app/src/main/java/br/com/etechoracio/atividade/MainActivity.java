@@ -11,7 +11,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener,
-        CustomDialog.ItemListener{
+        CustomDialog.ItemListener ,PopupMenu.OnMenuItemClickListener{
 
     private boolean insertMode;
     private ItemAdapter adapter;
@@ -69,6 +69,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
      popup.show();
 
 
-        return true;
+      // selectedItem = R.id.custom_dialog;
+
+
+       return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+
+            case R.id.mn_excluir:
+
+
+                adapter.removeItem(selectedItem);
+                insertMode = false;
+                return true;
+        }
+
+
     }
 }

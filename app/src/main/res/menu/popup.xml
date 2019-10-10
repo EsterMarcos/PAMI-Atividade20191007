@@ -6,6 +6,6 @@
         android:id="@+id/mn_editar"
         android:title="editar" />
     <item
-        android:id="@+id/mn_sair"
-        android:title="sair" />
+        android:id="@+id/mn_excluir"
+        android:title="excluir" />
 </menu>
