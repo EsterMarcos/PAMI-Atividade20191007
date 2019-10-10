@@ -40,10 +40,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 CustomDialog dialog = new CustomDialog(this);
                 dialog.show(getFragmentManager(), "customDialog");
                 insertMode = true;
-                default:
+
+           default:
+                    return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+
     }
 
     @Override
@@ -62,17 +64,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
 
      PopupMenu popup = new PopupMenu(this,view);
      popup.inflate(R.menu.popup);
+     popup.setOnMenuItemClickListener(this);
      popup.show();
+     selectedItem = position;
+     selectedItemName = adapter.getItem(position).toString();
+     return true;
 
-
-      // selectedItem = R.id.custom_dialog;
-
-
-       return true;
     }
 
     @Override
@@ -81,12 +82,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             case R.id.mn_excluir:
 
-
                 adapter.removeItem(selectedItem);
                 insertMode = false;
                 return true;
+
+            case R.id.mn_editar :
+
+                insertMode=false;
+                CustomDialog dialog = new CustomDialog(this);
+                dialog.show(getFragmentManager(),"CustomDialog");
+                dialog.setItem(selectedItemName);
+                return true;
+            default:
+                    return super.onOptionsItemSelected(menuItem);
+
+
         }
 
-
     }
+
 }
